@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tols="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/textViewLot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textViewLotValue"
+                android:layout_alignLeft="@+id/textViewPrice"
+                android:layout_alignStart="@+id/textViewPrice"
+                android:text="Lot #"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="120dp"
+                android:layout_height="90dp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/textViewmake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="13dp"
+                android:layout_marginStart="13dp"
+                android:layout_toEndOf="@+id/imageView"
+                android:layout_toRightOf="@+id/imageView"
+                android:text="Mini"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textViewmake"
+                android:layout_alignStart="@+id/textViewmake"
+                android:layout_below="@+id/textViewmake"
+                android:inputType="numberDecimal"
+                android:text="121,100"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewLot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textViewLotValue"
+                android:layout_alignLeft="@+id/textViewPrice"
+                android:layout_alignStart="@+id/textViewPrice"
+                android:text="Lot#"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPrimaryDark"
+                tools:ignore="DuplicateIds" />
+
+            <TextView
+                android:id="@+id/textViewLotValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textViewLot"
+                android:layout_alignStart="@+id/textViewLot"
+                android:layout_below="@+id/imageView"
+                android:inputType="number"
+                android:text="101950"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:paddingRight="0dp" />
+
+            <TextView
+                android:id="@+id/textViewAED"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textViewPrice"
+                android:layout_toEndOf="@+id/textViewPrice"
+                android:layout_toRightOf="@+id/textViewPrice"
+                android:text="AED"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/TextViewBids"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textViewLotValue"
+                android:layout_alignLeft="@+id/textViewAED"
+                android:layout_alignStart="@+id/textViewAED"
+                android:text="Bids"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/TextviewTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/TextViewBids"
+                android:layout_alignBottom="@+id/TextViewBids"
+                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp"
+                android:layout_toEndOf="@+id/TextViewBids"
+                android:layout_toRightOf="@+id/TextViewBids"
+                android:text="Time Left"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/TextBidsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextViewBids"
+                android:layout_alignStart="@+id/TextViewBids"
+                android:layout_below="@+id/TextViewBids"
+                android:inputType="number"
+                android:text="37"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtviewTimeValue"
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_alignLeft="@+id/TextviewTime"
+                android:layout_alignStart="@+id/TextviewTime"
+                android:layout_below="@+id/TextviewTime"
+                android:ems="10"
+                android:inputType="time"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/TxtviewModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/textViewLotValue"
+                android:layout_toRightOf="@+id/textViewLotValue"
+                android:text="Cooper S"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtviewYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/TxtviewModel"
+                android:layout_toRightOf="@+id/TxtviewModel"
+                android:text="2013"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
