@@ -85,8 +85,8 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
         holder.textViewLotValue.setText(carsListData.get(position).getAuctionInfo().getLot()+"");
 
         String imageUrl =carsListData.get(position).getImage();
-        imageUrl= imageUrl.replace("[w]","100");
-        imageUrl= imageUrl.replace("[h]","100");
+        imageUrl= imageUrl.replace("[w]","200");
+        imageUrl= imageUrl.replace("[h]","200");
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.build().load(imageUrl
         )
