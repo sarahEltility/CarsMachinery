@@ -14,6 +14,6 @@ import retrofit2.http.GET;
 
 public interface GetDataService {
 
-    @GET("/carsonline")
-    Call<List<Car>> getCars();
+    @GET("carsonline")
+    Call<CarsListResponse> getCars();
 }

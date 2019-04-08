@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit = null;
-    private static final String Base_URL = "http://api.emiratesauction.com/v2";
+    private static final String Base_URL = "http://api.emiratesauction.com/v2/";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit==null){

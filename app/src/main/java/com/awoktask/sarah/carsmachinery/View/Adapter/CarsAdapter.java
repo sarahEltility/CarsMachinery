@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import okhttp3.OkHttpClient;
 
@@ -43,14 +44,14 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
 
 
     class CarsViewHolder extends RecyclerView.ViewHolder{
-       CardView mCardView;
+       LinearLayout mCardView;
        public ImageView imageView;
        public TextView textViewmake,textViewPrice,textViewLotValue,textViewAED,TextBidsValue,txtviewModel,textViewYear;
        public EditText TextTimeValue;
 
         CarsViewHolder(@NonNull View itemView) {
             super(itemView);
-            mCardView = (CardView) itemView;
+            mCardView = (LinearLayout) itemView;
             TextTimeValue = itemView.findViewById(R.id.txtviewTimeValue);
             imageView =  itemView.findViewById(R.id.imageView);
             textViewmake = itemView.findViewById(R.id.textViewmake);
@@ -68,7 +69,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
     @Override
     public CarsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        CardView cardView = (CardView) inflater.inflate(R.layout.list_layout, parent, false);
+        LinearLayout cardView = (LinearLayout) inflater.inflate(R.layout.list_layout, parent, false);
         CarsViewHolder holder = new CarsViewHolder(cardView);
         return new CarsViewHolder(cardView);
     }
@@ -76,16 +77,15 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
     @Override
     public void onBindViewHolder(@NonNull CarsViewHolder holder, int position) {
         holder.textViewmake.setText(carsListData.get(position).getMakeEn());
-        holder.textViewYear.setText(carsListData.get(position).getYear());
+        holder.textViewYear.setText(carsListData.get(position).getYear()+"");
         holder.txtviewModel.setText(carsListData.get(position).getModelEn());
-        holder.TextBidsValue.setText(carsListData.get(position).getAuctionInfo().getBids());
+        holder.TextBidsValue.setText(carsListData.get(position).getAuctionInfo().getBids()+"");
         holder.textViewAED.setText(carsListData.get(position).getAuctionInfo().getCurrencyEn());
-        holder.textViewPrice.setText(carsListData.get(position).getAuctionInfo().getCurrentPrice());
-        holder.textViewLotValue.setText(carsListData.get(position).getAuctionInfo().getLot());
+        holder.textViewPrice.setText(carsListData.get(position).getAuctionInfo().getCurrentPrice()+"");
+        holder.textViewLotValue.setText(carsListData.get(position).getAuctionInfo().getLot()+"");
 
 
         Picasso.Builder builder = new Picasso.Builder(context);
-        builder.downloader(new OkHttpDownloader(context));
         builder.build().load(carsListData.get(position).getImage("https://cdn.emiratesauction.com/media/9jeqvldvobggms4ko3qmdfpdqq0s12o81i3wid3o67xji1to3/t_,w_0,h_0/images.jpg"))
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)

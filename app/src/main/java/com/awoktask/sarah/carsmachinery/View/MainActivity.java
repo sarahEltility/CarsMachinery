@@ -47,22 +47,30 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<List<Car>> call = service.getCars();
+        Call<CarsListResponse> call = service.getCars();
 
-        call.enqueue(new Callback<List<Car>>() {
+
+
+        call.enqueue(new Callback<CarsListResponse>() {
             @Override
-            public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
+            public void onResponse(Call<CarsListResponse> call, Response<CarsListResponse> response) {
 
                 progressDialog.dismiss();
-                generateDataList(response.body());
+
+
+                generateDataList(response.body().getCars()
+                );
 
 
             }
 
             @Override
-            public void onFailure(Call<List<Car>> call, Throwable t) {
+            public void onFailure(Call<CarsListResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(MainActivity.this, "Something went wrong ... please try later !",Toast.LENGTH_SHORT).show();
+                Log.e("error message",t.getMessage());
+
+                Toast.makeText(MainActivity.this, "Something went wrong ... please try later ! "+t.getMessage(),Toast.LENGTH_LONG
+                ).show();
 
 
             }
@@ -95,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void  generateDataList(List<Car> carsListResponses){
+    private void
+
+    generateDataList(List<Car> carsListResponses){
 
         recyclerView = findViewById(R.id.recyclerView);
         adapter = new CarsAdapter(this, carsListResponses);
