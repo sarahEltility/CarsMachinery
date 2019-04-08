@@ -1,7 +1,8 @@
 
 package com.awoktask.sarah.carsmachinery.Model.CarsData;
 
-import com.google.gson.annotations.Expose;
+import
+        com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class AuctionInfo {

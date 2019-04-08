@@ -84,9 +84,12 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
         holder.textViewPrice.setText(carsListData.get(position).getAuctionInfo().getCurrentPrice()+"");
         holder.textViewLotValue.setText(carsListData.get(position).getAuctionInfo().getLot()+"");
 
-
+        String imageUrl =carsListData.get(position).getImage();
+        imageUrl= imageUrl.replace("[w]","100");
+        imageUrl= imageUrl.replace("[h]","100");
         Picasso.Builder builder = new Picasso.Builder(context);
-        builder.build().load(carsListData.get(position).getImage("https://cdn.emiratesauction.com/media/9jeqvldvobggms4ko3qmdfpdqq0s12o81i3wid3o67xji1to3/t_,w_0,h_0/images.jpg"))
+        builder.build().load(imageUrl
+        )
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imageView);

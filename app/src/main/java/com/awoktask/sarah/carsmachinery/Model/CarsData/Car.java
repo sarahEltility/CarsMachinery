@@ -75,7 +75,7 @@ public class Car {
         this.carID = carID;
     }
 
-    public String getImage(String s) {
+    public String getImage() {
         return image;
     }
 
