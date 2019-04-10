@@ -5,12 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.awoktask.sarah.carsmachinery.View.MainActivity">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/colorPrimaryDark"
+        >
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter"
+            />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort"
+            />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GridView"
+            />
+    </android.support.design.widget.TabLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tablayout"
+        >
 
 
     <android.support.v7.widget.RecyclerView

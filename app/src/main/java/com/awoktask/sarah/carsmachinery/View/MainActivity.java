@@ -9,30 +9,22 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.awoktask.sarah.carsmachinery.Presenter.CarsContract;
+import com.awoktask.sarah.carsmachinery.Presenter.CarsPresenter;
 import com.awoktask.sarah.carsmachinery.Model.CarsData.Car;
-import com.awoktask.sarah.carsmachinery.Model.CarsData.CarsListResponse;
-import com.awoktask.sarah.carsmachinery.Model.Networking.GetDataService;
-import com.awoktask.sarah.carsmachinery.Model.Networking.RetrofitClientInstance;
 import com.awoktask.sarah.carsmachinery.R;
 import com.awoktask.sarah.carsmachinery.View.Adapter.CarsAdapter;
 
-import org.json.JSONArray;
-
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CarsContract.view{
 
     private SwipeRefreshLayout swipeContainer;
     private RecyclerView recyclerView ;
     private CarsAdapter adapter;
     ProgressDialog progressDialog;
-
+    private CarsPresenter carsPresenter;
 
 
     @Override
@@ -40,44 +32,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        carsPresenter=new CarsPresenter();
+        carsPresenter.view=this;
+
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
         progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<CarsListResponse> call = service.getCars();
 
-
-
-        call.enqueue(new Callback<CarsListResponse>() {
-            @Override
-            public void onResponse(Call<CarsListResponse> call, Response<CarsListResponse> response) {
-
-                progressDialog.dismiss();
-
-
-                generateDataList(response.body().getCars()
-                );
-
-
-            }
-
-            @Override
-            public void onFailure(Call<CarsListResponse> call, Throwable t) {
-                progressDialog.dismiss();
-                Log.e("error message",t.getMessage());
-
-                Toast.makeText(MainActivity.this, "Something went wrong ... please try later ! "+t.getMessage(),Toast.LENGTH_LONG
-                ).show();
-
-
-            }
-
-
-
-        });
+        carsPresenter.loadData();
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
@@ -105,10 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void
 
-    generateDataList(List<Car> carsListResponses){
+    generateDataList(List<Car> carsListResponses, String ticks){
+        int ticksInSeconds;
+        try {
+             ticksInSeconds = Integer.valueOf(ticks);
+        }catch (Exception E){
+            ticksInSeconds=-1;
+        }
 
         recyclerView = findViewById(R.id.recyclerView);
-        adapter = new CarsAdapter(this, carsListResponses);
+        adapter = new CarsAdapter(this, carsListResponses,ticksInSeconds);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -133,6 +104,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+    @Override
+    public void loadDataSuccess(List<Car> cars, String ticks) {
+        progressDialog.dismiss();
+        generateDataList(cars, ticks);
+    }
 
-
+    @Override
+    public void loadDataFail(Throwable t) {
+        progressDialog.dismiss();
+        Toast.makeText(MainActivity.this, "Something went wrong ... please try later ! "+t.getMessage(),Toast.LENGTH_LONG
+        ).show();
+    }
 }

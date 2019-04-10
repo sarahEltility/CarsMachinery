@@ -6,6 +6,7 @@ package com.awoktask.sarah.carsmachinery.View.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,12 +35,15 @@ import java.util.Timer;
 
 public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder> {
 
+    private final int THREE_MIN_IN_SECONDS = 3*60*60;
     private Context context;
     private List<Car> carsListData;
+    private int ticks;
 
-    public CarsAdapter(Context context, List<Car> carsListData) {
+    public CarsAdapter(Context context, List<Car> carsListData,  int ticks) {
         this.context = context;
         this.carsListData = carsListData;
+        this.ticks=ticks;
     }
 
 
@@ -47,7 +51,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
        LinearLayout mCardView;
        public ImageView imageView;
        public TextView textViewmake,textViewPrice,textViewLotValue,textViewAED,TextBidsValue,txtviewModel,textViewYear;
-       public EditText TextTimeValue;
+       public TextView TextTimeValue;
 
         CarsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +88,9 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
         holder.textViewPrice.setText(carsListData.get(position).getAuctionInfo().getCurrentPrice()+"");
         holder.textViewLotValue.setText(carsListData.get(position).getAuctionInfo().getLot()+"");
 
+
+
+
         String imageUrl =carsListData.get(position).getImage();
         imageUrl= imageUrl.replace("[w]","200");
         imageUrl= imageUrl.replace("[h]","200");
@@ -93,6 +100,11 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imageView);
+
+        if(ticks<=THREE_MIN_IN_SECONDS)
+            holder.TextTimeValue.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark));
+        holder.TextTimeValue.setText(ticks+"");
+
 
 
 
